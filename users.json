@@ -16,6 +16,16 @@
       "id": "2f9329c9-91fd-43e2-a186-4aaa7361a783",
       "email": "bruno@email2.com",
       "password": "bruno"
+    },
+    {
+      "id": "cba39062-bdcb-4f92-b2dd-e34359bce9b7",
+      "email": "bruno@email3.com",
+      "password": "bruno"
+    },
+    {
+      "id": "1d88ba08-37cb-4363-8653-baeddeec0168",
+      "email": "bruno@email4.com",
+      "password": "bruno"
     }
   ]
 }

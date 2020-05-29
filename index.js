@@ -1,11 +1,26 @@
-const fs = require('fs')
+const fs = require('fs');
+const { extname } = require('path');
 const jsonfile = require('jsonfile');
 const express = require('express');
 const jsonServer = require('json-server')
 const jwt = require('jsonwebtoken')
 const { find } = require('lodash');
 const { v4: uuidv4 } = require('uuid');
+const multer = require('multer');
+// https://codesquery.com/file-upload-in-node-js/
 // https://www.techiediaries.com/fake-api-jwt-json-server/
+// define multer storage configuration     
+const storage = multer.diskStorage({
+    destination: function (req, file, callback) {
+        callback(null, './public/upload/');
+    },
+    filename: function (req, file, callback) {
+        const ext = extname(file.originalname);
+        callback(null, `${Date.now()}${ext}`);
+    }
+});
+
+const upload = multer({ storage: storage });
 
 const server = express();
 const router = jsonServer.router('./db.json');
@@ -41,6 +56,10 @@ function auth(req, res, next) {
     }
     try {
         verifyToken(req.headers.authorization.split(' ')[1])
+        console.log(req.body);
+        req.body.id = uuidv4();
+        req.body.name = "Goutam Das";
+        console.log(req.body);
         next()
     } catch (err) {
         const status = 401
@@ -83,7 +102,14 @@ server.post('/auth/register', (req, res) => {
     return res.status(200).json({ message: 'You successfully registered' });
 })
 
-server.use('/api', auth, router);
+function addFileName(req, res, next) {
+    if (req.file) {
+        console.log(req.file.path);
+        req.body.url = req.file.path;
+    }
+    next()
+}
+server.use('/api', auth, upload.single('singleFile'), addFileName, router);
 
 server.listen(3000, () => {
     console.log('Run Auth API Server')
