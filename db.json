@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "email": "goutam@gmail.com",
+      "password": "$2a$10$nmLa8ac0557F25xm2Z0Cf.e00VdBIlPVnjFCKGUbYuj3NcnMjAS1q",
+      "id": 1
+    }
+  ],
+  "posts": [
+    {
+      "id": 1
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}

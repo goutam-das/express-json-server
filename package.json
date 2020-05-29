@@ -1,0 +1,20 @@
+{
+  "name": "express-json-server",
+  "version": "1.0.0",
+  "description": "Json-server extends with express",
+  "main": "index.js",
+  "author": "Goutam Das <goutamdas676@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "json-server": "^0.16.1",
+    "json-server-auth": "^1.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
